@@ -1,0 +1,41 @@
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.topbar { position: sticky; top: 0; background:#fff; padding:.5rem 0; z-index:10; }
+
+.create {
+  display:grid;
+  grid-template-columns: 1fr 1fr 2fr auto;
+  gap:.5rem;
+  margin: .5rem 0 1rem;
+
+  input, button {
+    padding:.6rem .8rem;
+    border:1px solid #e5e5e5;
+    border-radius:8px;
+  }
+  button { cursor:pointer; }
+}
+
+.grid {
+  column-count: 1;
+  column-gap: 1.25rem;
+
+  @media (min-width: 520px) { column-count: 2; }
+  @media (min-width: 820px) { column-count: 3; }
+  @media (min-width: 1200px){ column-count: 5; }
+
+  app-post-card {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem;
+  }
+}
+
+.loading { opacity: .6; filter: grayscale(.2); }
+
+.form-hint {
+  display:block;
+  margin-top:.25rem;
+  font-size:.8rem;
+  color:#c03535;
+}

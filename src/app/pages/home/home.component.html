@@ -1,0 +1,60 @@
+<!-- Sidebar izquierda (decorativa) -->
+<aside class="pin-sidebar">
+  <div class="logo">P</div>
+  <button class="icon-btn" title="Inicio" type="button">🏠</button>
+  <button class="icon-btn" title="Explorar" type="button">🧭</button>
+  <button class="icon-btn" title="Guardados" type="button">📌</button>
+  <button class="icon-btn" title="Notificaciones" type="button">🔔</button>
+  <button class="icon-btn" title="Mensajes" type="button">💬</button>
+  <div style="flex:1"></div>
+  <img class="avatar" src="https://i.pravatar.cc/100?img=5" alt="Perfil">
+</aside>
+
+<header class="pinbar">
+  <div class="pinbar-inner">
+    <div style="display:flex; align-items:center; gap:.5rem;">
+      <div class="logo" style="width:32px;height:32px; border-radius:50%; background:#e60023; color:#fff; display:grid;place-items:center;font-weight:700;">P</div>
+      <strong style="font-size:18px;">Pinterest</strong>
+    </div>
+
+    <div class="pin-search">
+      <span></span>
+      <input placeholder="Buscar" aria-label="Buscar">
+    </div>
+
+    <div style="display:flex; align-items:center; gap:.5rem;">
+      <button class="icon-btn" type="button" title="Añadir">＋</button>
+      <button class="icon-btn" type="button" title="Notificaciones">🔔</button>
+      <button class="icon-btn" type="button" title="Mensajes">💬</button>
+      <img class="avatar" src="https://i.pravatar.cc/100?img=5" alt="Perfil">
+    </div>
+  </div>
+</header>
+
+<!-- Contenido principal -->
+<section class="main-container">
+  <!-- Form para crear (opcional) -->
+  <form class="create" (ngSubmit)="create()" [formGroup]="form">
+    <div><input placeholder="Título" formControlName="title" required></div>
+    <div><input placeholder="Descripción" formControlName="description"></div>
+    <div>
+      <input placeholder="URL de imagen" formControlName="imageUrl" required>
+      <small class="form-hint" *ngIf="form.controls.imageUrl.invalid && form.controls.imageUrl.touched">
+        Ingresa una URL válida.
+      </small>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Agregar</button>
+  </form>
+
+  <!-- Grid -->
+  <div class="grid" [class.loading]="loading()">
+    <ng-container *ngFor="let p of posts()">
+      <ng-container *ngIf="p?.imageUrl">
+        <app-post-card [post]="p" />
+      </ng-container>
+    </ng-container>
+  </div>
+</section>
+
+
+
